@@ -12,6 +12,8 @@ subprojects {
     apply plugin: "forgified-fabric-loom"
     apply plugin: "io.freefair.lombok"
 
+    generateLombokConfig.enabled = false
+
     loom {
         silentMojangMappingsLicense()
     }

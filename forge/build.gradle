@@ -20,7 +20,7 @@ dependencies {
 
     modCompile("me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config_version}")
 
-    shadow("org.spongepowered:configurate-hocon:${rootProject.configurate_version}")
+    shadowCommon("org.spongepowered:configurate-hocon:${rootProject.configurate_version}")
 
     implementation(project(path: ":common")) {
         transitive = false

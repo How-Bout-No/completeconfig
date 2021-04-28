@@ -17,7 +17,7 @@ dependencies {
 
     modImplementation "com.terraformersmc:modmenu:1.16.9"
 
-    include("org.spongepowered:configurate-hocon:${rootProject.configurate_version}")
+    shadowCommon("org.spongepowered:configurate-hocon:${rootProject.configurate_version}")
 
     implementation(project(path: ":common")) {
         transitive = false
