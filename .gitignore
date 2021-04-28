@@ -1,31 +1,26 @@
-# gradle
+/*
 
-.gradle/
-build/
-out/
-classes/
+lombok.config
 
-# eclipse
+/forge/.gradle
+/forge/build
+/fabric/.gradle
+/fabric/build
+/common/.gradle
+/common/build
 
-*.launch
+!/gradle
+!/common
+!/fabric
+!/forge
 
-# idea
-
-.idea/
-*.iml
-*.ipr
-*.iws
-
-# vscode
-
-.settings/
-.vscode/
-bin/
-.classpath
-.project
-
-# fabric
-
-run/
-example/run/
-/logs/
+!/build.gradle
+!/gradle.properties
+!/gradlew
+!/gradlew.bat
+!/README.md
+!/LICENSE
+!/update.json
+!/changelog.txt
+!/.gitignore
+!/settings.gradle

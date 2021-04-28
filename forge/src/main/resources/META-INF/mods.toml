@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[36,)"
+#issueTrackerURL = ""
+license = "Apache-2.0"
+
+[[mods]]
+modId = "completeconfig"
+version = "${version}"
+displayName = "CompleteConfig"
+authors = "Lortseam, HowBoutNo"
+description = '''
+Configuration library
+'''
+#logoFile = ""
+
+[[dependencies.completeconfig]]
+modId = "forge"
+mandatory = true
+versionRange = "[36,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.completeconfig]]
+modId = "architectury"
+mandatory = true
+versionRange = "[1.1.55,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.completeconfig]]
+modId = "cloth-config2"
+mandatory = false
+versionRange = "[4,)"
+ordering = "NONE"
+side = "CLIENT"

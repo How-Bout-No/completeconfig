@@ -1,15 +1,17 @@
 pluginManagement {
     repositories {
-        jcenter()
-        maven {
-            name = 'Fabric'
-            url = 'https://maven.fabricmc.net/'
-        }
+        maven { url "https://maven.fabricmc.net/" }
+        maven { url "https://maven.shedaniel.me/" }
+        maven { url "https://files.minecraftforge.net/maven/" }
+        maven { url 'https://maven.terraformersmc.com/releases/' }
+        maven { url 'https://maven.blamejared.com' }
+        maven { url 'https://jitpack.io' }
         gradlePluginPortal()
     }
 }
 
-include("lib")
-include("example")
+include("common")
+include("fabric")
+include("forge")
 
-rootProject.name = 'completeconfig'
+rootProject.name = "completeconfig"
