@@ -1,11 +1,11 @@
 package io.github.how_bout_no.completeconfig.gui;
 
+import io.github.how_bout_no.completeconfig.CompleteConfigUtil;
 import io.github.how_bout_no.completeconfig.data.Config;
 import io.github.how_bout_no.completeconfig.gui.cloth.ClothConfigScreenBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.ModList;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public abstract class ConfigScreenBuilder {
 
-    private static final ConfigScreenBuilder fallback = ModList.get().isLoaded("cloth-config2") ? new ClothConfigScreenBuilder() : null;
+    private static final ConfigScreenBuilder fallback = CompleteConfigUtil.isModLoaded("cloth-config2") ? new ClothConfigScreenBuilder() : null;
     private static final Map<String, ConfigScreenBuilder> mainBuilders = new HashMap<>();
 
     /**

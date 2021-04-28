@@ -1,5 +1,3 @@
-package io.github.how_bout_no.completeconfig;
-
 import com.google.common.collect.Sets;
 import io.github.how_bout_no.completeconfig.extensions.CompleteConfigExtension;
 import io.github.how_bout_no.completeconfig.extensions.Extension;
@@ -7,11 +5,11 @@ import io.github.how_bout_no.completeconfig.extensions.GuiExtension;
 import io.github.how_bout_no.completeconfig.extensions.clothbasicmath.ClothBasicMathExtension;
 import io.github.how_bout_no.completeconfig.util.ReflectionUtils;
 import lombok.NonNull;
+import lombok.experimental.UtilityClass;
 import lombok.extern.log4j.Log4j2;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.entrypoint.EntrypointContainer;
 import org.apache.commons.lang3.ClassUtils;
 
 import java.lang.reflect.InvocationTargetException;
@@ -21,25 +19,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Log4j2
-@Mod("completeconfig")
-public final class CompleteConfigForge {
+@UtilityClass
+public final class CompleteConfigFabric {
 
     private static final Set<Class<? extends Extension>> validExtensionTypes = Sets.newHashSet(CompleteConfigExtension.class);
     private static final Set<Extension> extensions = new HashSet<>();
 
-    public CompleteConfigForge() {
-        MinecraftForge.EVENT_BUS.register(this);
-    }
-
     static {
-        registerExtensionType(GuiExtension.class, Dist.CLIENT, "cloth-config2");
+        registerExtensionType(GuiExtension.class, EnvType.CLIENT, "cloth-config2");
         registerExtension("cloth-basic-math", ClothBasicMathExtension.class);
-        registerExtension("completeconfig-extension", CompleteConfigExtension.class);
+        for (EntrypointContainer<CompleteConfigExtension> entrypoint : FabricLoader.getInstance().getEntrypointContainers("completeconfig-extension", CompleteConfigExtension.class)) {
+            registerExtension(entrypoint.getEntrypoint());
+        }
     }
 
-    public static void registerExtensionType(Class<? extends Extension> extensionType, Dist environment, String... mods) {
+    public static void registerExtensionType(Class<? extends Extension> extensionType, EnvType environment, String... mods) {
         if (validExtensionTypes.contains(extensionType)) return;
-        if (environment != null && FMLEnvironment.dist != environment || Arrays.stream(mods).anyMatch(modID -> !CompleteConfigUtil.isModLoaded(modID)))
+        if (environment != null && FabricLoader.getInstance().getEnvironmentType() != environment || Arrays.stream(mods).anyMatch(modID -> !FabricLoader.getInstance().isModLoaded(modID)))
             return;
         validExtensionTypes.add(extensionType);
     }
@@ -67,7 +63,7 @@ public final class CompleteConfigForge {
     }
 
     public static void registerExtension(@NonNull String modID, @NonNull Class<? extends CompleteConfigExtension> extensionType) {
-        if (!CompleteConfigUtil.isModLoaded(modID)) return;
+        if (!FabricLoader.getInstance().isModLoaded(modID)) return;
         registerExtension(extensionType);
     }
 }

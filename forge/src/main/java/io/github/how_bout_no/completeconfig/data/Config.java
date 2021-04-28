@@ -1,12 +1,12 @@
 package io.github.how_bout_no.completeconfig.data;
 
+import io.github.how_bout_no.completeconfig.CompleteConfigUtil;
 import io.github.how_bout_no.completeconfig.api.ConfigContainer;
 import io.github.how_bout_no.completeconfig.data.text.TranslationIdentifier;
 import io.github.how_bout_no.completeconfig.io.ConfigSource;
 import lombok.NonNull;
 import lombok.extern.log4j.Log4j2;
 import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 
 import java.util.*;
@@ -35,7 +35,7 @@ public final class Config extends BaseCollection {
      * @param modID the ID of the mod creating the config
      */
     public static Builder builder(@NonNull String modID) {
-        if (!ModList.get().isLoaded(modID)) {
+        if (!CompleteConfigUtil.isModLoaded(modID)) {
             throw new IllegalArgumentException("Mod " + modID + " is not loaded");
         }
         return new Builder(modID);
