@@ -1,13 +1,13 @@
-package me.lortseam.completeconfig.data;
+package io.github.how_bout_no.completeconfig.data;
 
 import com.google.common.collect.Iterables;
-import me.lortseam.completeconfig.api.ConfigContainer;
-import me.lortseam.completeconfig.api.ConfigGroup;
-import me.lortseam.completeconfig.data.structure.DataPart;
-import me.lortseam.completeconfig.data.structure.ParentDataPart;
-import me.lortseam.completeconfig.data.text.TranslationIdentifier;
-import me.lortseam.completeconfig.exception.IllegalAnnotationTargetException;
-import me.lortseam.completeconfig.util.ReflectionUtils;
+import io.github.how_bout_no.completeconfig.api.ConfigContainer;
+import io.github.how_bout_no.completeconfig.api.ConfigGroup;
+import io.github.how_bout_no.completeconfig.data.structure.DataPart;
+import io.github.how_bout_no.completeconfig.data.structure.ParentDataPart;
+import io.github.how_bout_no.completeconfig.data.text.TranslationIdentifier;
+import io.github.how_bout_no.completeconfig.exception.IllegalAnnotationTargetException;
+import io.github.how_bout_no.completeconfig.util.ReflectionUtils;
 import net.minecraft.text.Text;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
-abstract class BaseCollection implements ParentDataPart {
+public abstract class BaseCollection implements ParentDataPart {
 
     protected final TranslationIdentifier translation;
     private final EntrySet entries;
