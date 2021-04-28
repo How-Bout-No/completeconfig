@@ -11,6 +11,7 @@ import lombok.experimental.UtilityClass;
 import lombok.extern.log4j.Log4j2;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.apache.commons.lang3.ClassUtils;
 
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 
 @Log4j2
 @UtilityClass
+@Mod("completeconfig")
 public final class CompleteConfigForge {
 
     private static final Set<Class<? extends Extension>> validExtensionTypes = Sets.newHashSet(CompleteConfigExtension.class);

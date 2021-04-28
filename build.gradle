@@ -57,4 +57,18 @@ allprojects {
     java {
         withSourcesJar()
     }
+
+    publishing {
+        repositories {
+            maven {
+                url repsyUrl
+                credentials {
+                    def envUsername = System.getenv("repsyUsername")
+                    def envPassword = System.getenv("repsyPassword")
+                    username = envUsername == null ? findProperty("repsyUsername") : envUsername
+                    password = envPassword == null ? findProperty("repsyPassword") : envPassword
+                }
+            }
+        }
+    }
 }
